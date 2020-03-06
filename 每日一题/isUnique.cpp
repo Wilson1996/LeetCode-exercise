@@ -15,7 +15,7 @@ class Solution {
 public:
     static bool isUnique(const string& astr) 
     {
-        int numOfChars[256] = {0};
+        int numOfChars[128] = {0};
         for(int i = 0; i < astr.size(); ++i)
         {
             if(numOfChars[astr[i]] > 0)
