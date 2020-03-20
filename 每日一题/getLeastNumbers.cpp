@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-20 09:49:43
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-03-20 13:10:16
+* @Last Modified time: 2020-03-20 17:36:20
 */
 /********************************************************
 * 题目[简单]：
@@ -35,9 +35,9 @@ public:
 	static vector<int> getLeastNumbers(vector<int>& arr, int k)
 	{
 		vector<int> result;
-        if(k <= 0)
-            return result;
-        //大顶堆
+		if(k <= 0)
+			return result;
+		//大顶堆
 		priority_queue<int, vector<int>, less<int>> Q;
 		for(int x : arr)
 		{
