@@ -23,4 +23,5 @@ Leetcode 2020年3月开启的每日一题活动
 * [第24天 按摩师](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/theMasseuseLCCI.cpp)		[Leetcode](https://leetcode-cn.com/problems/the-masseuse-lcci/)
 * [第25天 三维形体的表面积](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/surfaceArea.cpp)		[Leetcode](https://leetcode-cn.com/problems/surface-area-of-3d-shapes/)
 * [第26天 车的可用捕获量](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/numRookCaptures.cpp)		[Leetcode](https://leetcode-cn.com/problems/available-captures-for-rook/)
+* [第27天 卡牌分组](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/hasGroupsSizeX.cpp)       [Leetcode](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
 
