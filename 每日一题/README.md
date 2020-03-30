@@ -26,4 +26,5 @@ Leetcode 2020年3月开启的每日一题活动
 * [第27天 卡牌分组](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/hasGroupsSizeX.cpp)       [Leetcode](https://leetcode-cn.com/problems/x-of-a-kind-in-a-deck-of-cards/)
 * [第28天 单词的压缩编码](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/minimumLengthEncoding.cpp)       [Leetcode](https://leetcode-cn.com/problems/short-encoding-of-words/)
 * [第29天 地图分析](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/maxDistance.cpp)       [Leetcode](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
+* [第30天 圆圈中最后剩下的数字](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/lastRemaining.cpp)       [Leetcode](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
 
