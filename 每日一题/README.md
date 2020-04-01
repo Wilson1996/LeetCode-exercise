@@ -3,6 +3,8 @@ Leetcode 2020年3月开启的每日一题活动
 
 ## 📑 目录
 
+### :calendar: 2020年3月
+
 * [第5天 分糖果II](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/distributeCandies.cpp)		[Leetcode](https://leetcode-cn.com/problems/distribute-candies-to-people/)
 * [第6天 和为s的连续正数序列](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/findContinuousSequence.cpp)			[Leetcode](https://leetcode-cn.com/problems/he-wei-sde-lian-xu-zheng-shu-xu-lie-lcof/)
 * [第9天 买卖股票的最佳时机](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/maxProfit.cpp)		[Leetcode](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)
@@ -28,3 +30,7 @@ Leetcode 2020年3月开启的每日一题活动
 * [第29天 地图分析](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/maxDistance.cpp)       [Leetcode](https://leetcode-cn.com/problems/as-far-from-land-as-possible/)
 * [第30天 圆圈中最后剩下的数字](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/lastRemaining.cpp)       [Leetcode](https://leetcode-cn.com/problems/yuan-quan-zhong-zui-hou-sheng-xia-de-shu-zi-lcof/)
 * [第31天 排序数组](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/sortArray.cpp)       [Leetcode](https://leetcode-cn.com/problems/sort-an-array/)
+
+### :calendar: 2020年4月
+
+* [第1天 有效括号的嵌套深度](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/maxDepthAfterSplit.cpp)		[Leetcode](https://leetcode-cn.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/)
