@@ -34,3 +34,4 @@ Leetcode 2020年3月开启的每日一题活动
 ### :calendar: 2020年4月
 
 * [第1天 有效括号的嵌套深度](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/maxDepthAfterSplit.cpp)		[Leetcode](https://leetcode-cn.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/)
+* [第2天 生命游戏](https://github.com/Wilson1996/LeetCode-exercise/blob/master/每日一题/gameOfLife.cpp)		[Leetcode](https://leetcode-cn.com/problems/game-of-life/)
