@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-10 13:54:04
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-03-10 14:30:36
+* @Last Modified time: 2020-03-10 14:33:05
 */
 /****************************************************************
 * 题目[简单]：
@@ -53,9 +53,10 @@ public:
 	}
 };
 
-int main(int argc, char *argv[])
+int main(int argc, char* argv[])
 {
-	string str = "aabcccccaaa";
+	// string str = "aabcccccaaa";
+	string str = "abbccd";
 	cout << Solution::compressString(str) << endl;
 	return 0;
 }

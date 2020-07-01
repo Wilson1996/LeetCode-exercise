@@ -1,8 +1,8 @@
 /*
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-11 08:58:18
- * @Last Modified by:   wilson_t
- * @Last Modified time: 2020-03-11 10:38:09
+* @Last Modified by:   wilson_t
+* @Last Modified time: 2020-03-11 10:56:54
 */
 
 /****************************************************************
@@ -34,30 +34,30 @@ class Solution
 {
 public:
 	//方法一：暴力求解
-	static bool canThreePartsEqualSum(vector<int>& A)
+	static bool canThreePartsEqualSum(vector<int> &A)
 	{
-		if(A.size() <= 2)
+		if (A.size() <= 2)
 			return false;
 		vector<int> B(A.size(), 0);
 		B[0] = A[0];
-		for(int i = 1; i < A.size(); ++i)
+		for (int i = 1; i < A.size(); ++i)
 		{
 			B[i] = B[i - 1] + A[i];
 		}
-		for(int i = 0; i < B.size(); ++i)
+		for (int i = 0; i < B.size(); ++i)
 		{
 			cout << B[i] << ", ";
 		}
 		cout << endl;
 		int rightNum = B.back();
-		for(int i = 0; i < B.size(); ++i)
+		for (int i = 0; i < B.size(); ++i)
 		{
 			int middleNum = (rightNum + B[i]) / 2;
-			if(middleNum - B[i] == B[i])
+			if (middleNum - B[i] == B[i])
 			{
-				for(int j = i + 1; j < B.size() - 1; ++j)
+				for (int j = i + 1; j < B.size() - 1; ++j)
 				{
-					if(B[j] == middleNum)
+					if (B[j] == middleNum)
 					{
 						cout << i << ", " << j << endl;
 						return true;
@@ -68,27 +68,27 @@ public:
 		return false;
 	}
 	//方法二：贪心算法
-	static bool canThreePartsEqualSum2(vector<int>& A)
+	static bool canThreePartsEqualSum2(vector<int> &A)
 	{
-		if(A.size() <= 2)
+		if (A.size() <= 2)
 			return false;
 		int sum = accumulate(A.begin(), A.end(), 0);
-		if(sum % 3 != 0)
+		if (sum % 3 != 0)
 			return false;
 		int tempSum = 0;
 		bool findFirst = false;
 		// cout << sum << endl;
-		for(int i = 0; i < A.size() - 1; ++i)
+		for (int i = 0; i < A.size() - 1; ++i)
 		{
 			tempSum += A[i];
-			if(!findFirst && tempSum == sum / 3)
+			if (!findFirst && tempSum == sum / 3)
 			{
-				cout <<"i = " << i << "  tempSum: " << tempSum << endl;
+				cout << "i = " << i << "  tempSum: " << tempSum << endl;
 				findFirst = true;
 			}
-			else if(findFirst && tempSum == sum * 2 / 3)
+			else if (findFirst && tempSum == sum * 2 / 3)
 			{
-				cout <<"i = " << i << "  tempSum: " << tempSum << endl;
+				cout << "i = " << i << "  tempSum: " << tempSum << endl;
 				return true;
 			}
 		}

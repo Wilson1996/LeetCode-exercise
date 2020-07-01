@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-14 11:38:13
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-03-14 14:31:53
+* @Last Modified time: 2020-03-14 21:05:28
 */
 
 /**************************************************************
@@ -74,8 +74,8 @@ public:
 
 int main(int argc, char* argv[])
 {
-	string num1 = "123";
-	string num2 = "456";
+	string num1 = "12345678";
+	string num2 = "98765432";
 	cout << Solution::multiply(num1, num2) << endl;
 	return 0;
 }

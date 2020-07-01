@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-27 14:00:49
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-03-27 14:41:51
+* @Last Modified time: 2020-03-27 18:03:08
 */
 /*********************************************************
 * 题目[简单]：
@@ -59,18 +59,6 @@ public:
 		int X = groups.begin()->second;
 		for(auto iter = groups.begin(); iter != groups.end(); ++iter)
 		{
-			// int minVal = min(X, iter->second);
-			// int maxVal = max(X, iter->second);
-			// if(maxVal / minVal * minVal != maxVal)
-			// {
-			// 	int Gcd = __gcd(maxVal, minVal);
-			// 	if(Gcd == 1)
-			// 		return false;
-			// 	else
-			// 		X = Gcd;
-			// }
-			// else
-			// 	X = minVal;
 			X = __gcd(X, iter->second);
 			if(X == 1)
 				return false;
