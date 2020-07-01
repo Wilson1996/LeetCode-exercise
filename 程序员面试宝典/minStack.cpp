@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-18 13:25:21
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-03-18 14:08:29
+* @Last Modified time: 2020-03-18 14:22:43
 */
 /**********************************************************
 * 题目[简单]：
@@ -42,25 +42,21 @@ public:
     MinStack()
     {
     }
-
     void push(int x)
     {
         SK_data.push(x);
         if(SK_min.empty() || x < SK_min.top()) SK_min.push(x);
         else SK_min.push(SK_min.top());
     }
-
     void pop()
     {
         SK_data.pop();
         SK_min.pop();
     }
-
     int top()
     {
         return SK_data.top();
     }
-
     int getMin()
     {
         return SK_min.top();
