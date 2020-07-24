@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-07-18 13:07:37
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-07-18 13:08:35
+* @Last Modified time: 2020-07-24 10:04:16
 */
 /*********************************************************
 * 题目[中等]:
@@ -53,7 +53,7 @@ public:
             }
             else{
                 color[v] = 3 - color[cur];
-                res = dfs(v, G);
+                res = res && dfs(v, G);
             }
         }
         return res;
