@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-07-26 14:41:05
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-07-26 15:21:35
+* @Last Modified time: 2020-07-26 15:27:39
 */
 /**********************************************************
 * 题目[困难]:
@@ -31,7 +31,7 @@
 **********************************************************/
 class Solution {
 public:
-    int longestIncreasingPath(vector<vector<int>> &matrix) {
+    int longestIncreasingPath(vector<vector<int>>& matrix) {
         if(matrix.size() == 0 || matrix[0].size() == 0) return 0;
         int m = matrix.size();
         int n = matrix[0].size();
