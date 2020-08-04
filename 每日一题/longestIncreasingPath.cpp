@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-07-26 14:41:05
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-07-26 15:27:39
+* @Last Modified time: 2020-07-27 00:13:40
 */
 /**********************************************************
 * 题目[困难]:
@@ -42,7 +42,7 @@ public:
             for(int k = 0; k < 4; ++k) {
                 x = i + DIR[k][0];
                 y = j + DIR[k][1];
-                if(x >= 0 && x < m && y >= 0 && y <	n && matrix[i][j] > matrix[x][y]) {
+                if(x >= 0 && x < m && y >= 0 && y < n && matrix[i][j] > matrix[x][y]) {
                     ++cnt;
                 }
             }
