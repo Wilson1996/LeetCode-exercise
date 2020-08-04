@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-08-03 00:33:15
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-08-03 00:34:06
+* @Last Modified time: 2020-08-04 19:16:04
 */
 /*
 你有两个 有序 且数组内元素互不相同的数组 nums1 和 nums2 。
@@ -50,5 +50,40 @@ public:
             }
         }
         return max(f[nums1[n1 - 1]], f[nums2[n2 - 1]]) % MOD;
+    }
+};
+
+//double pointer
+class Solution {
+public:
+    int maxSum(vector<int>& M, vector<int>& N) {
+        const int MOD = 1000000007;
+        int m = M.size();
+        int n = N.size();
+        int i = 0, j = 0;
+        long long score1 = 0, score2 = 0;
+        while(i < m || j < n) {
+            if(i < m && j < n) {
+                if(M[i] == N[j]) {
+                    long long best = max(score1, score2);
+                    score1 = score2 = best + M[i];
+                    ++i;
+                    ++j;
+                } else if(M[i] < N[j]) {
+                    score1 += M[i];
+                    ++i;
+                } else {
+                    score2 += N[j];
+                    ++j;
+                }
+            } else if(i < m) {
+                score1 += M[i];
+                ++i;
+            } else {
+                score2 += N[j];
+                ++j;
+            }
+        }
+        return max(score1, score2) % MOD;
     }
 };
