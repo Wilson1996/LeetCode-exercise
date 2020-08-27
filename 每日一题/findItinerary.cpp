@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-05-30 16:47:23
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-05-30 22:07:41
+* @Last Modified time: 2020-08-27 22:37:41
 */
 /*********************************************************
 * 题目[中等]：
@@ -28,80 +28,99 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
+namespace ANSWER{
+class Solution {
+public:
+    unordered_map<string, priority_queue<string, vector<string>, std::greater<string>>> vec;
+    vector<string> stk;
+
+    void dfs(const string& curr) {
+        while (vec.count(curr) && vec[curr].size() > 0) {
+            string tmp = vec[curr].top();
+            vec[curr].pop();
+            dfs(move(tmp));
+        }
+        stk.emplace_back(curr);
+    }
+
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        for (auto& it : tickets) {
+            vec[it[0]].emplace(it[1]);
+        }
+        dfs("JFK");
+
+        reverse(stk.begin(), stk.end());
+        return stk;
+    }
+};
+}
+
+namespace SOLVE{
+class Solution {
     unordered_map<string, int> idhash;
     vector<string> airports;
     vector<vector<int>> G;
-    unordered_map<string, bool> vis;
-    vector<string> res;
+    unordered_map<long long, int> eCnt;
+    vector<int> path;
     int nodecnt;
     int edgecnt;
 public:
-    bool dfs(int cur)
-    {
-        if(res.size() == edgecnt + 1)
+    bool dfs(int cur) {
+        if(path.size() == edgecnt + 1)
             return true;
-        // vis[res.back() + airports[cur]] = true;
-        for(auto& v : G[cur])
-        {
-            if(vis[airports[cur] + airports[v]]) continue;
-            res.push_back(airports[v]);
-            vis[airports[cur] + airports[v]] = true;
-            if(dfs(v))
-            {
-                // vis[airports[cur] + airports[v]] = false;
+        for(auto& v : G[cur]) {
+            if(eCnt[((long long)cur << 32) | v] == 0) continue;
+            path.push_back(v);
+            eCnt[((long long)cur << 32) | v]--;
+            if(dfs(v)) {
                 return true;
             }
-            res.pop_back();
-            vis[airports[cur] + airports[v]] = false;
+            path.pop_back();
+            eCnt[((long long)cur << 32) | v]++;
         }
-        // vis[res.back() + airports[cur]] = true;
         return false;
     }
-    vector<string> findItinerary(vector<vector<string>>& tickets)
-    {
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
         edgecnt = 0;
-        for(auto& t : tickets)
-        {
+        for(auto& t : tickets) {
             airports.emplace_back(t[0]);
             airports.emplace_back(t[1]);
-            vis[t[0] + t[1]] = false;
             ++edgecnt;
         }
         sort(airports.begin(), airports.end());
         airports.erase(unique(airports.begin(), airports.end()), airports.end());
         nodecnt = 0;
-        for(auto& a : airports)
-        {
+        for(auto& a : airports) {
             idhash[a] = nodecnt++;
         }
         G = vector<vector<int>>(nodecnt);
-        for(auto& t : tickets)
-        {
+        for(auto& t : tickets) {
             G[idhash[t[0]]].emplace_back(idhash[t[1]]);
+            eCnt[((long long)idhash[t[0]] << 32) | idhash[t[1]]]++;
         }
-        for(auto& g : G)
-        {
+        for(auto& g : G) {
             sort(g.begin(), g.end());
         }
         int cur = idhash["JFK"];
-        res.push_back("JFK");
-        if(dfs(cur))
+        path.clear();
+        path.push_back(cur);
+        if(dfs(cur)) {
+            vector<string> res(path.size());
+            for(int i = 0; i < path.size(); ++i) res[i] = airports[path[i]];
             return res;
-        else
+        } else {
             return vector<string> {};
+        }
     }
 };
+}
 
-int main(int argc, char* argv[])
-{
-    Solution soluter;
+int main(int argc, char* argv[]) {
+    SOLVE::Solution soluter;
     // vector<vector<string>> tickets = {{"JFK","SFO"},{"JFK","ATL"},{"SFO","ATL"},{"ATL","JFK"},{"ATL","SFO"}};
     vector<vector<string>> tickets = {{"EZE", "AXA"}, {"TIA", "ANU"}, {"ANU", "JFK"}, {"JFK", "ANU"}, {"ANU", "EZE"}, {"TIA", "ANU"}, {"AXA", "TIA"}, {"TIA", "JFK"}, {"ANU", "TIA"}, {"JFK", "TIA"}};
     vector<string> res = soluter.findItinerary(tickets);
-    for(auto& x : res)
-    {
+    for(auto& x : res) {
         cout << x << ", ";
     }
     cout << endl;
