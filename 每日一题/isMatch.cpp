@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-06-20 13:08:05
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-06-20 13:53:17
+* @Last Modified time: 2020-09-12 11:12:59
 */
 /*********************************************************
 * 题目[困难]：
@@ -50,89 +50,38 @@ s = "mississippi"
 p = "mis*is*p*."
 输出: false
 *********************************************************/
-class Solution
-{
+class Solution {
 public:
-    bool isAlpha(char ch)
-    {
-        return ch >= 'a' && ch <= 'z';
-    }
-    bool isMatch(string s, string p)
-    {
-        int n = s.size();
-        int m = p.size();
-        int ps = 0, pp = 0;
-        int state = 0;
-        for (int i = 0; i < m; ++i)
-        {
-            switch(state)
-            {
-                case 0: //a-z
-                {
-                    if(isAlpha(p[i]))
-                    {
-                        if(p[i] != s[ps]) return false;
-                        ++ps;
-                    }
-                    else if(p[i] == '.')
-                    {
-                        state = 1;
-                        ++ps;
-                    }
-                    else
-                    {
-                        state = 2;
-                        if(ps > 0 && s[ps - 1] != s[ps]) return false;
-                        ++ps;
-                    }
-                }
-                break;
-                case 1:	//.
-                {
-                    if(isAlpha(p[i]))
-                    {
-                        if(p[i] != s[ps]) return false;
-                        state = 1;
-                    }
-                    else if(p[i] == '.')
-                    {
-                        ++ps;
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-                break;
-                case 2:	//*
-                {
-                    if(isAlpha(p[i]))
-                    {
-                        if(p[i] != s[ps])
-                        {
-                            if(ps > 0 && s[ps - 1] != s[ps]) return false;
-                            else ++ps;
-                        }
-                        else
-                        {
-                            state = 0;
-                            ++ps;
-                        }
-                    }
-                    else if(p[i] == '.')
-                    {
-                        state = 1;
-                        ++ps;
-                    }
-                    else
-                    {
-                        ++ps;
-                    }
-                }
-                break;
+    bool isMatch(string s, string p) {
+        int m = s.size();
+        int n = p.size();
+
+        auto matches = [&](int i, int j) {
+            if (i == 0) {
+                return false;
             }
-            if(ps >= n) return true;
+            if (p[j - 1] == '.') {
+                return true;
+            }
+            return s[i - 1] == p[j - 1];
+        };
+
+        vector<vector<int>> f(m + 1, vector<int>(n + 1));
+        f[0][0] = true;
+        for (int i = 0; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (p[j - 1] == '*') {
+                    f[i][j] |= f[i][j - 2];
+                    if (matches(i, j - 1)) {
+                        f[i][j] |= f[i - 1][j];
+                    }
+                } else {
+                    if (matches(i, j)) {
+                        f[i][j] |= f[i - 1][j - 1];
+                    }
+                }
+            }
         }
-        return true;
+        return f[m][n];
     }
 };
