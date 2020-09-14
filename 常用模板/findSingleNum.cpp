@@ -1,14 +1,8 @@
 /*
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
-* @Date:   2020-06-30 11:54:19
-* @Last Modified by:   wilson_t
-* @Last Modified time: 2020-06-30 12:00:07
-*/
-/*
-* @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-06-30 09:11:58
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-06-30 11:39:08
+* @Last Modified time: 2020-09-10 19:54:22
 */
 /*********************************************************
 在一个数组 nums 中除一个数字只出现一次之外，其他数字都出现了k次。
