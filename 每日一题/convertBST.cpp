@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-09-21 17:12:23
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-09-21 17:13:44
+* @Last Modified time: 2020-09-22 19:40:47
 */
 /*********************************************************
 * 题目[简单]：
@@ -25,17 +25,17 @@
 class Solution {
     int curSum = 0;
 public:
-    void InvMidTraverse(TreeNode* cur) {
+    void invMidTraverse(TreeNode* cur) {
         if(!cur) return;
-        InvMidTraverse(cur->right);
+        invMidTraverse(cur->right);
         cur->val += curSum;
         curSum = cur->val;
-        InvMidTraverse(cur->left);
+        invMidTraverse(cur->left);
     }
     TreeNode* convertBST(TreeNode* root) {
         if(!root) return NULL;
         curSum = 0;
-        InvMidTraverse(root);
+        invMidTraverse(root);
         return root;
     }
 };
