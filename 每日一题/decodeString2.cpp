@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-09-25 22:08:19
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-09-25 22:11:29
+* @Last Modified time: 2020-09-25 22:13:20
 */
 /********************************************************
 * 题目[中等]：
@@ -52,7 +52,7 @@ public:
         }
         if(mid + 1 < n - 1) {
             int left = 1;
-            for(i += 2; i < n; ++i) {
+            for(i += 1; i < n; ++i) {
                 if(s[i] == '[') left++;
                 else if(s[i] == ']') left--;
                 if(left == 0) {
