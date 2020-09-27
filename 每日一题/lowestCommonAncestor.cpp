@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-05-10 08:52:14
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-05-10 09:26:46
+* @Last Modified time: 2020-09-27 00:27:22
 */
 /**
  * Definition for a binary tree node.
@@ -18,31 +18,25 @@
 #include <stack>
 using namespace std;
 
-namespace Solution1
-{
-class Solution
-{
+namespace Solution1 {
+class Solution {
 public:
-    bool dfs(vector<TreeNode*>& S, TreeNode* target)
-    {
+    bool dfs(vector<TreeNode*>& S, TreeNode* target) {
         TreeNode* cur = S.back();
         if(cur == target) return true;
-        if(cur->left != NULL)
-        {
+        if(cur->left != NULL) {
             S.push_back(cur->left);
             if(dfs(S, target)) return true;
             S.pop_back();
         }
-        if(cur->right != NULL)
-        {
+        if(cur->right != NULL) {
             S.push_back(cur->right);
             if(dfs(S, target)) return true;
             S.pop_back();
         }
         return false;
     }
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
-    {
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if(root == NULL)
             return NULL;
         vector<TreeNode*> sP;
@@ -57,13 +51,32 @@ public:
         return sP[i - 1];
     }
 };
+class Solution {
+public:
+    bool dfs(TreeNode* cur, TreeNode* target, vector<TreeNode*>& path) {
+        if(cur == NULL) return false;
+        path.emplace_back(cur);
+        if(cur == target) return true;
+        if(dfs(cur->left, target, path)) return true;
+        if(dfs(cur->right, target, path)) return true;
+        path.pop_back();
+        return false;
+    }
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        vector<TreeNode*> path_p, path_q;
+        dfs(root, p, path_p);
+        dfs(root, q, path_q);
+        int i = 0;
+        while(i < path_p.size() && i < path_q.size() && path_p[i] == path_q[i]) ++i;
+        return path_p[i - 1];
+    }
+};
+
 }
 
-namespace Solution2
-{
+namespace Solution2 {
 class Solution {//所有的递归的返回值有4种可能性，NULL、p、q、公共祖先
-    TreeNode* LowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
-    {
+    TreeNode* LowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
         if (root == NULL) {//当遍历到叶结点后就会返回NULL
             return root;
         }
