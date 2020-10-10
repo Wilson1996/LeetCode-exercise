@@ -1,9 +1,12 @@
-#ifndef __DEGUB_H
-#define __DEGUB_H
+#ifndef __DEBUG_H
+#define __DEBUG_H
 #include <iostream>
 #include <vector>
 #include <string>
 #include <unordered_map>
+#include <unordered_set>
+#include <map>
+#include <set>
 using namespace std;
 
 struct Debug {
@@ -19,13 +22,13 @@ struct Debug {
     }
     template<typename T>
     Debug& operator<<(const vector<vector<T>>& v) {
-        cout << "[";
+        // cout << "[";
         for(auto& x : v) {
-        	cout << "\n";
+        	// cout << "\n";
             operator<<(x);
-            cout << ", ";
+            cout << ", \n";
         }
-        cout << "\n]";
+        // cout << "\n]";
         return *this;
     }
     Debug& operator<<(const int& v) {
@@ -82,6 +85,39 @@ struct Debug {
         cout << "}";
         return *this;
     }
+
+    template<typename K, typename V>
+    Debug& operator<<(const map<K, V>& v) {
+        cout << "{";
+        for(auto& kv : v) {
+            *this << kv.first << ": " << kv.second << ", ";
+        }
+        // cout << "\b\b";
+        cout << "}";
+        return *this;
+    }
+
+    template<typename K>
+    Debug& operator<<(const unordered_set<K>& v) {
+        cout << "{";
+        for(auto& kv : v) {
+            *this << kv << ", ";
+        }
+        // cout << "\b\b";
+        cout << "}";
+        return *this;
+    }
+
+    template<typename K>
+    Debug& operator<<(const set<K>& v) {
+        cout << "{";
+        for(auto& kv : v) {
+            *this << kv << ", ";
+        }
+        // cout << "\b\b";
+        cout << "}";
+        return *this;
+    }
 };
 
-#endif /* __DEGUB_H */
+#endif /* __DEBUG_H */

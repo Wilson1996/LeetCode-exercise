@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-04-24 11:10:36
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-04-28 20:03:15
+* @Last Modified time: 2020-10-10 20:53:42
 */
 /*********************************************************
 * 题目[困难]：
@@ -13,62 +13,93 @@
 输入: [7,5,6,4]
 输出: 5
 *********************************************************/
-#include <iostream>
-#include <vector>
-#include <algorithm>
+#include <bits/stdc++.h>
 using namespace std;
 
-class Solution
-{
-    int result;
+class Solution1 {
 public:
-    void mergeCount(vector<int>& nums, int l, int mid, int r)
-    {
-        vector<int> tmp1;
-        vector<int> tmp2;
-        for(int i = 0; i < mid - l; ++i) tmp1.push_back(nums[l + i]);
-        for(int i = 0; i < r - mid; ++i) tmp2.push_back(nums[mid + i]);
-        // int maxLen = max(tmp1.size(), tmp2.size());
-        int index = l;
-        for(int i = 0, j = 0; i < tmp1.size() || j < tmp2.size(); )
-        {
-            if(i >= tmp1.size()) {nums[index++] = tmp2[j++];}
-            else if(j >= tmp2.size()) {nums[index++] = tmp1[i++];}
-            else
-            {
-                if(tmp1[i] <= tmp2[j])
-                    nums[index++] = tmp1[i++];
-                else
-                {
-                    nums[index++] = tmp2[j++];
-                    result += 1;
+    int mergesort(vector<int>& nums, int l, int r) {
+        if(r - l <= 1) return 0;
+        int mid = (l + r) / 2, cnt = 0;
+        cnt += mergesort(nums, l, mid);
+        cnt += mergesort(nums, mid, r);
+        cnt += merge(nums, l, mid, r);
+        return cnt;
+    }
+
+    int merge(vector<int>& nums, int l, int mid, int r) {
+        vector<int> front(nums.begin() + l, nums.begin() + mid);
+        int i = 0, j = mid, n1 = mid - l, idx = l, cnt = 0;
+        while(i < n1 || j < r) {
+            if(i < n1 && j < r) {
+                if(front[i] <= nums[j]) {
+                    nums[idx++] = front[i++];
+                } else {
+                    cnt += (n1 - i);
+                    nums[idx++] = nums[j++];
                 }
+            } else if(i < n1) {
+                nums[idx++] = front[i++];
+            } else {
+                nums[idx++] = nums[j++];
             }
         }
+        return cnt;
     }
-    void mergeCountSort(vector<int>& nums, int l, int r)
-    {
-        cout << "------------------" << endl;
-        if(l < r)
-        {
-            int mid = (l + r) / 2;
-            mergeCountSort(nums, l, mid);
-            mergeCountSort(nums, mid, r);
-            mergeCount(nums, l, mid, r);
-        }
-    }
-    int reversePairs(vector<int>& nums)
-    {
-        result = 0;
-        mergeCountSort(nums, 0, nums.size());
-        return result;
+
+    int reversePairs(vector<int>& nums) {
+        return mergesort(nums, 0, nums.size());
     }
 };
 
-int main(int argc, char* argv[])
-{
+//树状数组
+class Solution2 {
+    vector<int> cv;
+    int n;
+public:
+    int lowbit(int x){
+        return x & (-x);
+    }
+
+    void update(int i, int x){
+        while(i <= n){
+            cv[i] += x;
+            i += lowbit(i);
+        }
+    }
+
+    int query(int i){
+        int sum = 0;
+        while(i > 0){
+            sum += cv[i];
+            i -= lowbit(i); 
+        }
+        return sum;
+    }
+
+    int reversePairs(vector<int>& nums) {
+        n = nums.size();
+        multiset<int> ms(nums.begin(), nums.end());
+        unordered_map<int, int> mp;
+        int rank = 1;
+        for(auto& x : ms){
+            mp[x] = rank++;
+        }
+        cv = vector<int>(n+1, 0);
+        int res = 0;
+        for(int i = n-1; i >= 0; --i){
+            int rank = mp[nums[i]];
+            update(rank, 1);
+            res += query(rank-1);
+        }
+        return res;
+    }
+};
+
+
+int main(int argc, char* argv[]) {
     vector<int> nums = {7, 5, 6, 4};
-    Solution soluter;
+    Solution2 soluter;
     cout << soluter.reversePairs(nums) << endl;
     return 0;
 }
