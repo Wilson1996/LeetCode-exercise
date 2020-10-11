@@ -55,14 +55,14 @@ public:
 //树状数组
 class Solution2 {
     vector<int> cv;
-    int n;
+    int n, cn;
 public:
     int lowbit(int x){
         return x & (-x);
     }
 
     void update(int i, int x){
-        while(i <= n){
+        while(i <= cn){
             cv[i] += x;
             i += lowbit(i);
         }
@@ -79,13 +79,14 @@ public:
 
     int reversePairs(vector<int>& nums) {
         n = nums.size();
-        multiset<int> ms(nums.begin(), nums.end());
+        set<int> ms(nums.begin(), nums.end());
         unordered_map<int, int> mp;
         int rank = 1;
         for(auto& x : ms){
             mp[x] = rank++;
         }
-        cv = vector<int>(n+1, 0);
+        cn = mp.size();
+        cv = vector<int>(cn+1, 0);
         int res = 0;
         for(int i = n-1; i >= 0; --i){
             int rank = mp[nums[i]];
@@ -96,9 +97,8 @@ public:
     }
 };
 
-
 int main(int argc, char* argv[]) {
-    vector<int> nums = {7, 5, 6, 4};
+    vector<int> nums = {7, 5, 6, 4, 4, 4, 10};//11
     Solution2 soluter;
     cout << soluter.reversePairs(nums) << endl;
     return 0;
