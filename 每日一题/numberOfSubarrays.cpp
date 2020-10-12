@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-04-21 20:22:09
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-04-21 20:23:13
+* @Last Modified time: 2020-10-12 22:10:22
 */
 /*********************************************************
 * 题目[中等]：
@@ -29,10 +29,22 @@
 1 <= nums[i] <= 10^5
 1 <= k <= nums.length
 *********************************************************/
-class Solution
-{
+class Solution {
 public:
-    int numberOfSubarrays(vector<int>& nums, int k)
-    {
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> v(n);
+        for(int i = 0; i < n; ++i) {
+            v[i] = nums[i] & 1;
+        }
+        vector<int> mp(n + 1, 0);
+        mp[0] = 1;
+        int cnt = 0, res = 0;
+        for(int i = 0; i < n; ++i) {
+            cnt += v[i];
+            if(cnt >= k && mp[cnt - k] != 0) res += mp[cnt - k];
+            mp[cnt]++;
+        }
+        return res;
     }
 };
