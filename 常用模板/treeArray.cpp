@@ -2,58 +2,89 @@
 * @Author: wilson_t
 * @Date:   2020-08-11 21:23:25
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-08-11 22:51:37
+* @Last Modified time: 2020-11-09 11:31:24
 */
 /*
 * 树状数组
 */
+// class NumArray {
+// private:
+//     int n;
+//     vector<int> a;
+//     vector<int> c;
+// public:
+//     int lowbit(int x) {
+//         return x & (-x);
+//     }
+//     NumArray(vector<int>& nums) {
+//         n = nums.size();
+//         a = vector<int> (n + 1, 0);
+//         c = vector<int> (n + 1, 0);
+//         for(int i = 0; i < n; ++i) {
+//             a[i + 1] = nums[i];
+//         }
+//         for(int i = 0; i < n; ++i) {
+//             _update(i, nums[i]);
+//         }
+//     }
+//     void _update(int i, int ins) {
+//         ++i;
+//         while(i <= n) {
+//             c[i] += ins;
+//             i += lowbit(i);
+//         }
+//     }
+//     void update(int i, int val) {
+//         ++i;
+//         int ins = val - a[i];
+//         a[i] = val;
+//         while(i <= n) {
+//             c[i] += ins;
+//             i += lowbit(i);
+//         }
+//     }
+
+//     int getSUm(int i) {
+//         ++i;
+//         int res = 0;
+//         while(i > 0) {
+//             res += c[i];
+//             i -= lowbit(i);
+//         }
+//         return res;
+//     }
+//     int sumRange(int i, int j) {
+//         return getSUm(j) - getSUm(i - 1);
+//     }
+// };
+
+
+
+
+
 class NumArray {
-private:
-    int n;
-    vector<int> a;
-    vector<int> c;
+    vector<int> cv;
+    int cn;
 public:
-    int lowbit(int x) {
+    NumArray(int size) : cn(size), cv(size+1, 0) {}
+
+    int lowbit(int x){
         return x & (-x);
     }
-    NumArray(vector<int>& nums) {
-        n = nums.size();
-        a = vector<int> (n + 1, 0);
-        c = vector<int> (n + 1, 0);
-        for(int i = 0; i < n; ++i) {
-            a[i + 1] = nums[i];
-        }
-        for(int i = 0; i < n; ++i) {
-            _update(i, nums[i]);
-        }
-    }
-    void _update(int i, int ins) {
-        ++i;
-        while(i <= n) {
-            c[i] += ins;
-            i += lowbit(i);
-        }
-    }
-    void update(int i, int val) {
-        ++i;
-        int ins = val - a[i];
-        a[i] = val;
-        while(i <= n) {
-            c[i] += ins;
+
+    void update(int i, int x){
+        while(i <= cn){
+            cv[i] += x;
             i += lowbit(i);
         }
     }
 
-    int getSUm(int i) {
-        ++i;
-        int res = 0;
-        while(i > 0) {
-            res += c[i];
-            i -= lowbit(i);
+    int query(int i){
+        int sum = 0;
+        while(i > 0){
+            sum += cv[i];
+            i -= lowbit(i); 
         }
-        return res;
+        return sum;
     }
-    int sumRange(int i, int j) {
-        return getSUm(j) - getSUm(i - 1);
-    }
-};
+}
