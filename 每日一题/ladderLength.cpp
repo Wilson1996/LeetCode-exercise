@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-11-05 11:10:56
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-11-05 11:13:06
+* @Last Modified time: 2020-11-06 11:04:32
 */
 /*
 * 题目[中等]：
@@ -47,6 +47,7 @@ public:
         }
         return diff == 1;
     };
+
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
         int n = wordList.size(), target = -1;
         wordList.emplace_back(beginWord);
