@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-10-06 22:33:52
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-10-06 22:36:11
+* @Last Modified time: 2020-11-30 14:14:53
 */
 /*****************************************************************
 * 题目[中等]：
@@ -35,6 +35,10 @@
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/gray-code
 *****************************************************************/
+#include <bits/stdc++.h>
+#include "debug.h"
+using namespace std;
+
 class Solution {
 public:
     vector<int> grayCode(int n) {
@@ -51,3 +55,32 @@ public:
         return res;
     }
 };
+
+
+class GrayCode {
+public:
+    vector<string> getGray(int n) {
+        vector<string> res;
+        int highest = 1;
+        res.emplace_back(string(n, '0'));
+        for(int i = 0; i < n; ++i) {
+            highest = 1 << i;
+            int len = res.size();
+            for(int j = len - 1; j >= 0; --j) {
+                string nxt = res[j];
+                nxt[n-1-i] = '1';
+                res.emplace_back(nxt);
+            }
+        }
+        return res;
+    }
+};
+
+int main(int argc, char* argv[]) {
+    GrayCode grayCode;
+    vector<string> res = grayCode.getGray(4);
+
+    Debug() << res << "\n";
+
+    return 0;
+}
