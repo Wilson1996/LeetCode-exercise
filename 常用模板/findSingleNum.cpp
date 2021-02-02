@@ -11,6 +11,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//这种做法不能处理负数
 class Solution
 {
 private:
@@ -49,7 +50,7 @@ public:
 
 int main(int argc, char* argv[])
 {
-    vector<int> nums = {9, 1, 7, 9, 7, 9, 7, 9, 7, 9, 7, 10, 10, 10, 10, 10};
+    vector<int> nums = {9, -1, 7, 9, 7, 9, 7, 9, 7, 9, 7, 10, 10, 10, 10, 10};
     Solution soluter;
     int res = soluter.singleNumber(nums, 5);
     cout << res << endl;

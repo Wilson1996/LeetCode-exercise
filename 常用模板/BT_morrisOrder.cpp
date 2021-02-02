@@ -1,8 +1,8 @@
 /*
 * @Author: Williss Taan
 * @Date:   2019-08-29 22:25:52
-* @Last Modified by:   Wilson.T
-* @Last Modified time: 2019-08-30 09:09:19
+* @Last Modified by:   wilson_t
+* @Last Modified time: 2020-10-27 10:03:03
 * @Description: morris遍历，时间复杂度O(N)，空间复杂度O(1)
 *		## morris遍历遵循的规则（假设当前节点为cur，初始时cur就是整棵树的头结点）:
 *			1、如果cur为null，则过程停止，否则继续下面的过程。
@@ -28,139 +28,114 @@
 
 using namespace std;
 
-struct BTNode
-{
-	int val;
-	BTNode* left;
-	BTNode* right;
+struct BTNode {
+    int val;
+    BTNode* left;
+    BTNode* right;
 };
 
-void morris(BTNode* root)
-{
-	if(root == NULL)
-		return;
-	BTNode* cur = root;
-	BTNode* mostRight = NULL;
-	while(cur != NULL)
-	{
-		mostRight = cur -> left;
-		if(mostRight != NULL)
-		{
-			while(mostRight -> right != NULL && mostRight -> right != cur)
-			{
-				mostRight = mostRight -> right;
-			}
-			if(mostRight -> right == NULL)
-			{
-				mostRight -> right = cur;
-				cur = cur -> left;
-				continue;
-			}
-			else
-			{
-				mostRight -> right = NULL;
-			}
-		}
-		cur = cur -> right;
-	}
+void morris(BTNode* root) {
+    if(root == NULL)
+        return;
+    BTNode* cur = root;
+    BTNode* mostRight = NULL;
+    while(cur != NULL) {
+        mostRight = cur -> left;
+        if(mostRight != NULL) {
+            while(mostRight -> right != NULL && mostRight -> right != cur) {
+                mostRight = mostRight -> right;
+            }
+            if(mostRight -> right == NULL) {
+                mostRight -> right = cur;
+                cur = cur -> left;
+                continue;
+            } else {
+                mostRight -> right = NULL;
+            }
+        }
+        cur = cur -> right;
+    }
 }
 
-void morrisPre(BTNode* root)
-{
-	if(root == NULL)
-		return;
-	BTNode* cur = root;
-	BTNode* mostRight = NULL;
-	while(cur != NULL)
-	{
-		mostRight = cur -> left;
-		if(mostRight != NULL)
-		{
-			while(mostRight -> right != NULL && mostRight -> right != cur)
-			{
-				mostRight = mostRight -> right;
-			}
-			if(mostRight -> right == NULL)
-			{
-				mostRight -> right = cur;
-				cout << cur -> val << " ";
-				cur = cur -> left;
-				continue;
-			}
-			else
-			{
-				mostRight -> right = NULL;
-			}
-		}
-		else
-		{
-			cout << cur -> val << " ";
-		}
-		cur = cur -> right;
-	}
+void morrisPre(BTNode* root) {
+    if(root == NULL)
+        return;
+    BTNode* cur = root;
+    BTNode* mostRight = NULL;
+    while(cur != NULL) {
+        mostRight = cur -> left;
+        if(mostRight != NULL) {
+            while(mostRight -> right != NULL && mostRight -> right != cur) {
+                mostRight = mostRight -> right;
+            }
+            if(mostRight -> right == NULL) {
+                mostRight -> right = cur;
+                cout << cur -> val << " ";
+                cur = cur -> left;
+                continue;
+            } else {
+                mostRight -> right = NULL;
+            }
+        } else {
+            cout << cur -> val << " ";
+        }
+        cur = cur -> right;
+    }
 }
 
-void morrisIn(BTNode* root)
-{
-	if(root == NULL)
-		return;
-	BTNode* cur = root;
-	BTNode* mostRight = NULL;
-	while(cur != NULL)
-	{
-		mostRight = cur -> left;
-		if(mostRight != NULL)
-		{
-			while(mostRight -> right != NULL && mostRight -> right != cur)
-			{
-				mostRight = mostRight -> right;
-			}
-			if(mostRight -> right == NULL)
-			{
-				mostRight -> right = cur;
-				cur = cur -> left;
-				continue;
-			}
-			else
-			{
-				mostRight -> right = NULL;
-			}
-		}
-		cout << cur -> val << " ";
-		cur = cur -> right;
-	}
+void morrisIn(BTNode* root) {
+    if(root == NULL)
+        return;
+    BTNode* cur = root;
+    BTNode* mostRight = NULL;
+    while(cur != NULL) {
+        mostRight = cur -> left;
+        if(mostRight != NULL) {
+            while(mostRight -> right != NULL && mostRight -> right != cur) {
+                mostRight = mostRight -> right;
+            }
+            if(mostRight -> right == NULL) {
+                mostRight -> right = cur;
+                cur = cur -> left;
+                continue;
+            } else {
+                mostRight -> right = NULL;
+            }
+        }
+        cout << cur -> val << " ";
+        cur = cur -> right;
+    }
 }
 
-int main(int argc, char const *argv[])
-{
-	BTNode *root;
-	BTNode nodes[7];
-	root = &nodes[0];
-	nodes[0].val = 10;
-	nodes[0].left = &nodes[1];
-	nodes[0].right = &nodes[2];
-	nodes[1].val = 6;
-	nodes[1].left = &nodes[3];
-	nodes[1].right = &nodes[4];
-	nodes[2].val = 14;
-	nodes[2].left = &nodes[5];
-	nodes[2].right = &nodes[6];
-	nodes[3].val = 4;
-	nodes[3].left = NULL;
-	nodes[3].right = NULL;
-	nodes[4].val = 8;
-	nodes[4].left = NULL;
-	nodes[4].right = NULL;
-	nodes[5].val = 12;
-	nodes[5].left = NULL;
-	nodes[5].right = NULL;
-	nodes[6].val = 16;
-	nodes[6].left = NULL;
-	nodes[6].right = NULL;
+int main(int argc, char const* argv[]) {
+    BTNode* root;
+    BTNode nodes[7];
+    root = &nodes[0];
+    nodes[0].val = 10;
+    nodes[0].left = &nodes[1];
+    nodes[0].right = &nodes[2];
+    nodes[1].val = 6;
+    nodes[1].left = &nodes[3];
+    nodes[1].right = &nodes[4];
+    nodes[2].val = 14;
+    nodes[2].left = &nodes[5];
+    nodes[2].right = &nodes[6];
+    nodes[3].val = 4;
+    nodes[3].left = NULL;
+    nodes[3].right = NULL;
+    nodes[4].val = 8;
+    nodes[4].left = NULL;
+    nodes[4].right = NULL;
+    nodes[5].val = 12;
+    nodes[5].left = NULL;
+    nodes[5].right = NULL;
+    nodes[6].val = 16;
+    nodes[6].left = NULL;
+    nodes[6].right = NULL;
 
-	morrisPre(root);
-	cout << "前序遍历（morris）" << endl;
-	morrisIn(root);
-	cout << "中序遍历（morris）" << endl;
-	return 0;
+    morrisPre(root);
+    cout << "前序遍历（morris）" << endl;
+    morrisIn(root);
+    cout << "中序遍历（morris）" << endl;
+    return 0;
 }

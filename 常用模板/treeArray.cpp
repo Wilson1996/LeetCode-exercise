@@ -2,12 +2,12 @@
 * @Author: wilson_t
 * @Date:   2020-08-11 21:23:25
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-11-09 11:31:24
+* @Last Modified time: 2020-11-28 13:35:49
 */
 /*
 * 树状数组
 */
-// class NumArray {
+// class Bit {
 // private:
 //     int n;
 //     vector<int> a;
@@ -16,7 +16,7 @@
 //     int lowbit(int x) {
 //         return x & (-x);
 //     }
-//     NumArray(vector<int>& nums) {
+//     Bit(vector<int>& nums) {
 //         n = nums.size();
 //         a = vector<int> (n + 1, 0);
 //         c = vector<int> (n + 1, 0);
@@ -62,11 +62,11 @@
 
 
 
-class NumArray {
+class Bit {
     vector<int> cv;
     int cn;
 public:
-    NumArray(int size) : cn(size), cv(size+1, 0) {}
+    Bit(int size) : cn(size), cv(size+1, 0) {}
 
     int lowbit(int x){
         return x & (-x);
@@ -87,4 +87,4 @@ public:
         }
         return sum;
     }
-}
+};

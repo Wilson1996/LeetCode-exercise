@@ -1,1 +1,2 @@
 Catlan = C(2n,n)/(n+1)
+Catlan数的奇偶性：Catlan(n)为奇数<=>(n+1)为2^k-1
