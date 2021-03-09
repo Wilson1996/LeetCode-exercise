@@ -19,3 +19,4 @@ void calc_fac_facInv() {
     }
 }
 //C(n, k) % mod = (ll)fac[n] * facInv[k] % mod * facInv[n-k] % mod; 
+//费马小定理： a/b (=) a*x(mod M) ==> x=b^(M-2) (M为质数时)
