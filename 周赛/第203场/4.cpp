@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-08-23 13:17:44
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-08-24 22:59:49
+* @Last Modified time: 2020-08-24 23:09:49
 */
 /*********************************************************
 * 题目[困难]：
@@ -45,8 +45,7 @@ public:
 
         int res = 0, sumL, sumR;
         for(int mid = l + 1; mid < r; ++mid) {
-            sumL = pre[mid] - pre[l];
-            sumR = pre[r] - pre[mid];
+            sumL = pre[mid] - pre[l]; sumR = pre[r] - pre[mid];
             if(sumL > sumR) {
                 res = max(res, sumR + dfs(sv, mid, r));
             } else if(sumL < sumR) {
@@ -62,9 +61,7 @@ public:
         int n = sv.size();
         for(int i = 0; i < n + 1; ++i) for(int j = 0; j < n + 1; ++j) f[i][j] = -1;
         memset(pre, 0, sizeof(int) * (n + 1));
-        for(int i = 0; i < n; ++i) {
-            pre[i + 1] = pre[i] + sv[i];
-        }
+        for(int i = 0; i < n; ++i) pre[i + 1] = pre[i] + sv[i];
         return dfs(sv, 0, n);
     }
 };

@@ -1,8 +1,8 @@
 /*
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-03-12 15:05:55
-* @Last Modified by:   Williss.T
-* @Last Modified time: 2020-03-12 15:19:19
+* @Last Modified by:   wilson_t
+* @Last Modified time: 2020-08-20 19:20:31
 */
 /*************************************************************
 * 不用if等比较语句，计算两个整数的最大值
