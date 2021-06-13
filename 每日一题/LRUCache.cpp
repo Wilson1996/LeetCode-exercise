@@ -2,7 +2,7 @@
 * @Author: wilson_t(Wilson.T@sjtu.edu.cn)
 * @Date:   2020-05-25 09:43:19
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-05-25 20:14:06
+* @Last Modified time: 2021-06-08 20:48:43
 */
 /*********************************************************
 * 题目[中等]：
@@ -34,25 +34,21 @@ cache.get(4);       // 返回  4
 #include <list>
 using namespace std;
 
-struct Node
-{
+struct Node {
     int key;
     int value;
     Node(int k, int v) : key(k), value(v) {}
 };
 using listIter_node = std::list<Node>::iterator;
-class LRUCache
-{
+class LRUCache {
     unordered_map<int, listIter_node> MP;
     list<Node> cache;
     int capacity;
 public:
-    LRUCache(int cap): capacity(cap)
-    {
+    LRUCache(int cap): capacity(cap) {
     }
 
-    int get(int key)
-    {
+    int get(int key) {
         auto it = MP.find(key);
         if(it == MP.end())
             return -1;
@@ -63,23 +59,65 @@ public:
         return val;
     }
 
-    void put(int key, int value)
-    {
-        if(MP.find(key) != MP.end())
-        {
+    void put(int key, int value) {
+        if(MP.find(key) != MP.end()) {
             cache.erase(MP[key]);
             cache.push_front(Node(key, value));
             MP[key] = cache.begin();
             return;
         }
-        if(cache.size() == capacity)
-        {
+        if(cache.size() == capacity) {
             int k_back = cache.back().key;
             cache.pop_back();
             MP.erase(k_back);
         }
         cache.push_front(Node(key, value));
         MP[key] = cache.begin();
+    }
+};
+
+
+class Solution {
+public:
+    /**
+     * lru design
+     * @param operators int整型vector<vector<>> the ops
+     * @param k int整型 the k
+     * @return int整型vector
+     */
+    vector<int> LRU(vector<vector<int> >& operators, int k) {
+        unordered_map<int, list<pair<int, int>>::iterator> mp;    //key, iter
+        unordered_map<int, int> value2key;    //value to key
+        list<pair<int, int>> seq;    //val: (key, value)
+        vector<int> res;
+        for(auto& v : operators) {
+            if(v[0] == 1) {
+                if(mp.size() >= k) {
+                    if(mp.count(v[1])) {
+                        auto old = mp[v[1]];
+                        seq.erase(old);
+                    } else {
+                        auto old = *seq.begin();
+                        seq.erase(seq.begin());
+                        mp.erase(old.first);
+                    }
+                }
+                auto it = seq.insert(seq.end(), make_pair(v[1], v[2]));
+                mp[v[1]] = it;
+            } else {
+                if(!mp.count(v[1])) {
+                    res.emplace_back(-1);
+                } else {
+                    auto it = mp[v[1]];
+                    pair<int, int> kv = *it;
+                    seq.erase(it);
+                    it = seq.insert(seq.end(), kv);
+                    mp[v[1]] = it;
+                    res.emplace_back(kv.second);
+                }
+            }
+        }
+        return res;
     }
 };
 
@@ -90,17 +128,16 @@ public:
  * obj->put(key,value);
  */
 
-int main(int argc, char* argv[])
-{
+int main(int argc, char* argv[]) {
     LRUCache cache(2);
     cache.put(1, 1);
     cache.put(2, 2);
     cout << cache.get(1) << endl;       // 返回  1
-    cache.put(3, 3);    				// 该操作会使得密钥 2 作废
-    cout << cache.get(2) << endl;      	// 返回 -1 (未找到)
-    cache.put(4, 4);    				// 该操作会使得密钥 1 作废
-    cout << cache.get(1) << endl;      	// 返回 -1 (未找到)
-    cout << cache.get(3) << endl;      	// 返回  3
-    cout << cache.get(4) << endl;     	// 返回  4
+    cache.put(3, 3);                    // 该操作会使得密钥 2 作废
+    cout << cache.get(2) << endl;       // 返回 -1 (未找到)
+    cache.put(4, 4);                    // 该操作会使得密钥 1 作废
+    cout << cache.get(1) << endl;       // 返回 -1 (未找到)
+    cout << cache.get(3) << endl;       // 返回  3
+    cout << cache.get(4) << endl;       // 返回  4
     return 0;
 }

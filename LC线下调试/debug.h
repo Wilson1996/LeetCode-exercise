@@ -12,120 +12,120 @@ using namespace std;
 struct Debug {
     template<typename T>
     Debug& operator<<(const vector<T>& v) {
-        cout << "[";
+        cerr << "[";
         for(int i = 0; i < (int)v.size(); ++i) {
-            if(i == 0) cout << v[i];
-            else cout << ", " << v[i];
+            if(i == 0) cerr << v[i];
+            else cerr << ", " << v[i];
         }
-        cout << "]";
+        cerr << "]";
         return *this;
     }
     template<typename T>
     Debug& operator<<(const vector<vector<T>>& v) {
-        // cout << "[";
+        // cerr << "[";
         for(int i = 0; i < (int)v.size(); ++i) {
             if(i == 0) operator<<(v[i]);
             else {
-                cout << ",\n";
+                cerr << ",\n";
                 operator<<(v[i]);
             }
         }
-        // cout << "\n]";
+        // cerr << "\n]";
         return *this;
     }
     Debug& operator<<(const int& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const long& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const char& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const long long& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const double& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const float& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const unsigned int& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const unsigned long& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const unsigned long long& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const unsigned char& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     Debug& operator<<(const string& v) {
-        cout << v;
+        cerr << v;
         return *this;
     }
     template<typename K, typename V>
     Debug& operator<<(const unordered_map<K, V>& v) {
-        cout << "{";
+        cerr << "{";
         for(auto& kv : v) {
             *this << kv.first << ": " << kv.second << ", ";
         }
-        cout << "}";
+        cerr << "}";
         return *this;
     }
 
     template<typename K, typename V>
     Debug& operator<<(const map<K, V>& v) {
-        cout << "{";
+        cerr << "{";
         for(auto& kv : v) {
             *this << kv.first << ": " << kv.second << ", ";
         }
-        cout << "}";
+        cerr << "}";
         return *this;
     }
 
     template<typename K>
     Debug& operator<<(const unordered_set<K>& v) {
-        cout << "{";
+        cerr << "{";
         int cnt = 0;
         for(auto& kv : v) {
             if(cnt == 0) *this << kv;
             else {
-                cout << ", ";
+                cerr << ", ";
                 *this << kv;
             }
             ++cnt;
         }
-        cout << "}";
+        cerr << "}";
         return *this;
     }
 
     template<typename K>
     Debug& operator<<(const set<K>& v) {
-        cout << "{";
+        cerr << "{";
         int cnt = 0;
         for(auto& kv : v) {
             if(cnt == 0) *this << kv;
             else {
-                cout << ", ";
+                cerr << ", ";
                 *this << kv;
             }
             ++cnt;
         }
-        cout << "}";
+        cerr << "}";
         return *this;
     }
 };

@@ -1,12 +1,13 @@
 /*
 * @Author: Williss Taan
 * @Date:   2019-08-28 15:07:16
-* @Last Modified by:   Wilson.T
-* @Last Modified time: 2019-10-05 11:35:56
+* @Last Modified by:   wilson_t
+* @Last Modified time: 2021-06-09 22:41:39
 */
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 
 using namespace std;
 
@@ -54,13 +55,48 @@ void QuickSort(int data[], int length, int start, int end) {
         QuickSort(data, length, index + 1, end);
 }
 
+
+
+
+
+
+//版本2
+void quickSort2(vector<int>& nums, int l, int r) {
+    if(l >= r) return;
+    int n = nums.size();
+    int pivot = nums[l];
+    int i = l, j = r;
+    while(i < j) {
+        while(i < j && nums[j] > pivot) --j;
+        nums[i] = nums[j];
+        while(i < j && nums[i] <= pivot) ++i;
+        nums[j] = nums[i];
+    }
+    nums[i] = pivot;
+    quickSort2(nums, l, i - 1);
+    quickSort2(nums, i + 1, r);
+}
+
+
+
+
+
+
 int main(int argc, char const* argv[]) {
-    int data[] = {5, 6, 7, 9, 1, 7, 3, 8, 8, 10};
-    // cout << Partition(data, 10, 0, 9) << endl;
-    QuickSort(data, 10, 0, 9);
-    for (int i = 0; i < 10; ++i) {
-        cout << data[i] << ",";
+    // int data[] = {5, 6, 7, 9, 1, 7, 3, 8, 8, 10};
+    // // cout << Partition(data, 10, 0, 9) << endl;
+    // QuickSort(data, 10, 0, 9);
+    // for (int i = 0; i < 10; ++i) {
+    //     cout << data[i] << ",";
+    // }
+    // cout << endl;
+    vector<int> nums = {5, 6, 7, 9, 1, 7, 3, 8, 8, 10};
+    quickSort2(nums, 0, nums.size() - 1);
+    for(int x : nums) {
+        cout << x << " ";
     }
     cout << endl;
     return 0;
 }
+
+
