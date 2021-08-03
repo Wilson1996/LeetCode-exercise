@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2021-06-06 17:58:11
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-06-06 17:58:52
+* @Last Modified time: 2021-06-13 10:17:47
 */
 /*
 给你一个整数数组 nums ，你的目标是令 nums 中的所有元素相等。完成一次减少操作需要遵照下面的几个步骤：
@@ -32,7 +32,7 @@
 2. largest = 2 下标为 2 。nextLargest = 1 。将 nums[2] 减少到 1 。nums = [1,1,1,2,2] 。
 3. largest = 2 下标为 3 。nextLargest = 1 。将 nums[3] 减少到 1 。nums = [1,1,1,1,2] 。
 4. largest = 2 下标为 4 。nextLargest = 1 。将 nums[4] 减少到 1 。nums = [1,1,1,1,1] 。
- 
+
 提示：
 1 <= nums.length <= 5 * 104
 1 <= nums[i] <= 5 * 104

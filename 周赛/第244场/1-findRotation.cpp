@@ -2,11 +2,11 @@
 * @Author: wilson_t
 * @Date:   2021-06-06 17:53:46
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-06-06 17:57:49
+* @Last Modified time: 2021-06-13 10:17:38
 */
 /*
 给你两个大小为 n x n 的二进制矩阵 mat 和 target 。现 以 90 度顺时针轮转 矩阵 mat 中的元素 若干次 ，
-如果能够使 mat 与 target 一致，返回 true ；否则，返回 false 。
+如果能够使 mat 与target 一致，返回 true ；否则，返回 false 。
 
 提示：
 n == mat.length == target.length

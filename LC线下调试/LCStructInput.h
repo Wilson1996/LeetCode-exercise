@@ -154,6 +154,10 @@ public:
         }
     }
 
+    void read(string& s) {
+        cin >> s;
+    }
+
     ListNode* makeList(vector<int>& v) {
         ListNode dummy(-1);
         ListNode* it = &dummy;
