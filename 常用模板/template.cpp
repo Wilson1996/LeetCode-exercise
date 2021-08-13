@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2021-08-09 13:43:44
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-08-09 13:45:04
+* @Last Modified time: 2021-08-09 15:12:42
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -24,6 +24,7 @@ const int d4x[] = {1, 0, -1, 0};
 const int d4y[] = {0, 1, 0, -1};
 const int d8x[] = {1, 0, -1, 0, 1, 1, -1, -1};
 const int d8y[] = {0, 1, 0, -1, 1, -1, 1, -1};
+mt19937_64 rng((unsigned int) chrono::steady_clock::now().time_since_epoch().count());
 
 struct Edge {
     int from, to;
