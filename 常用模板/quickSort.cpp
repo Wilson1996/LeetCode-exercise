@@ -2,7 +2,7 @@
 * @Author: Williss Taan
 * @Date:   2019-08-28 15:07:16
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-06-09 22:41:39
+* @Last Modified time: 2021-08-24 15:08:11
 */
 #include <iostream>
 #include <cstdlib>
@@ -57,10 +57,7 @@ void QuickSort(int data[], int length, int start, int end) {
 
 
 
-
-
-
-//版本2
+//版本2 双路快排
 void quickSort2(vector<int>& nums, int l, int r) {
     if(l >= r) return;
     int n = nums.size();
@@ -77,8 +74,20 @@ void quickSort2(vector<int>& nums, int l, int r) {
     quickSort2(nums, i + 1, r);
 }
 
-
-
+// 版本3 三路快排
+void triSort(vector<int>& a, int low, int high) {
+    if(low >= high) return;
+    int key = a[low];
+    int i = low, j = low;
+    int k = high;
+    while(i <= k) {
+        if(a[i] < key) swap(a[i++], a[j++]);
+        else if(a[i] > key) swap(a[i], a[k--]);
+        else i++;
+    }
+    triSort(a, low, j);
+    triSort(a, k + 1, high);
+}
 
 
 
@@ -91,7 +100,7 @@ int main(int argc, char const* argv[]) {
     // }
     // cout << endl;
     vector<int> nums = {5, 6, 7, 9, 1, 7, 3, 8, 8, 10};
-    quickSort2(nums, 0, nums.size() - 1);
+    triSort(nums, 0, nums.size() - 1);
     for(int x : nums) {
         cout << x << " ";
     }
