@@ -2,18 +2,32 @@
 * @Author: wilson_t
 * @Date:   2021-08-09 13:43:44
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-08-09 15:12:42
+* @Last Modified time: 2021-08-25 20:36:49
 */
 #include <bits/stdc++.h>
 using namespace std;
 
 using ll = long long;
 using int64 = long long;
+using int128 = __int128_t;
 using ld = long double;
 using pii = pair<int, int>;
 using pil = pair<int, long long>;
 using pll = pair<long long, long long>;
 using pli = pair<long long, int>;
+
+
+#ifdef __GNUC__
+// #include <bits/extc++.h>
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+template <typename T> using ordered_set = __gnu_pbds::tree<T, null_type, less<T>, rb_tree_tag, tree_order_statistics_node_update>;
+// tree.order_of_key(x) //--求排名
+// tree.find_by_order(k) //--求排名k的值(返回迭代器)
+// tree.join(b) //--将b并入tree，前提两棵树类型一样且没有重复元素
+// tree.split(v, b) //--分裂，key小于等于v的输入tree，其余属于b
+#endif
 
 inline void speedio() {
     std::ios::sync_with_stdio(false);
