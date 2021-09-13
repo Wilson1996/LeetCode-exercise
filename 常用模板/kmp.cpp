@@ -2,15 +2,31 @@
 #include<vector>
 
 using namespace std;
-vector<int> getNext(string pattern) {
-    int k = -1; //匹配的前缀长度，-1代表长度为0
-    vector<int> next(pattern.length(), -1);
-    for(int i = 1; i < pattern.length(); i++) {
+// vector<int> getNext(string pattern) {
+//     int k = -1; //匹配的前缀长度，-1代表长度为0
+//     vector<int> next(pattern.length(), -1);
+//     for(int i = 1; i < pattern.length(); i++) {
+//         while(k > -1 && pattern[k + 1] != pattern[i]) {
+//             k = next[k];
+//         }
+//         if(pattern[k + 1] == pattern[i]) {
+//             k = k + 1;
+//         }
+//         next[i] = k;
+//     }
+//     return next;
+// }
+
+vector<int> getNext(string& pattern) {
+    int n = pattern.size();
+    int k = -1;
+    vector<int> next(n, -1);
+    for(int i = 1; i < n; ++i) {
         while(k > -1 && pattern[k + 1] != pattern[i]) {
             k = next[k];
         }
         if(pattern[k + 1] == pattern[i]) {
-            k = k + 1;
+            k++;
         }
         next[i] = k;
     }
@@ -37,16 +53,23 @@ vector<int> KMP(string str, string pattern) {
 }
 
 int main() {
-    string str, pattern;
-    cin >> str >> pattern;
-    vector<int> res = KMP(str, pattern);
-    if(res.empty()) {
-        cout << -1 << endl;
-    } else {
-        for(int i = 0; i < res.size(); i++) {
-            cout << res[i] << " ";
-        }
+    string pattern = "ababa";
+    vector<int> next = getNext(pattern);
+    for(int x: next) {
+        cout << x << " ";
     }
+    cout << "\n";
+
+    // string str, pattern;
+    // cin >> str >> pattern;
+    // vector<int> res = KMP(str, pattern);
+    // if(res.empty()) {
+    //     cout << -1 << endl;
+    // } else {
+    //     for(int i = 0; i < res.size(); i++) {
+    //         cout << res[i] << " ";
+    //     }
+    // }
 }
 
 
