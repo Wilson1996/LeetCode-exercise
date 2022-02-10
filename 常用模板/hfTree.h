@@ -5,11 +5,9 @@
 #include <string>
 
 template<typename T>
-class hfTree
-{
+class hfTree {
 private:
-    struct Node
-    {
+    struct Node {
         T data;
         int weight;
         int parent, left, right;
@@ -17,42 +15,34 @@ private:
     Node* elem;
     int length;
 public:
-    struct hfCode
-    {
+    struct hfCode {
         T data;
         std::string code;
     };
-	hfTree(){}
-	hfTree(const T* v, const int* w, int size)
-    {
+    hfTree() {}
+    hfTree(const T* v, const int* w, int size) {
         const int MAX_INT = 32767;
         int min1, min2;
         int x, y;
 
         length = 2 * size;
         elem = new Node[length];
-        for (int i = size; i < length; ++i)
-        {
+        for (int i = size; i < length; ++i) {
             elem[i].weight = w[i - size];
             elem[i].data = v[i - size];
             elem[i].parent = elem[i].left = elem[i].right = 0;
         }
-        for (int i = size - 1; i > 0; --i)
-        {
+        for (int i = size - 1; i > 0; --i) {
             min1 = min2 = MAX_INT;
             x = y = 0;
-            for (int j = i + 1; j < length; ++j)
-            {
+            for (int j = i + 1; j < length; ++j) {
                 if(elem[j].parent == 0)
-                    if(elem[j].weight < min1)
-                    {
+                    if(elem[j].weight < min1) {
                         min2 = min1;
                         min1 = elem[j].weight;
                         x = y;
                         y = j;
-                    }
-                    else if(elem[j].weight < min2)
-                    {
+                    } else if(elem[j].weight < min2) {
                         min2 = elem[j].weight;
                         x = j;
                     }
@@ -61,28 +51,22 @@ public:
             elem[i].left = x;
             elem[i].right = y;
             elem[i].parent = 0;
-            elem[x].parent= i;
-            elem[y].parent = i;       
+            elem[x].parent = i;
+            elem[y].parent = i;
         }
     }
-	void getCode(hfCode result[])const
-    {
+    void getCode(hfCode result[])const {
         int size = length / 2;
         int p, s;
-        for (int i = size; i < length; ++i)
-        {
+        for (int i = size; i < length; ++i) {
             result[i - size].data = elem[i].data;
             result[i - size].code = "";
             p = elem[i].parent;
             s = i;
-            while(p)
-            {
-                if(elem[p].left == s)
-                {
-                    result[i - size].code = '0'+result[i - size].code;
-                }
-                else
-                {
+            while(p) {
+                if(elem[p].left == s) {
+                    result[i - size].code = '0' + result[i - size].code;
+                } else {
                     result[i - size].code = '1' + result[i - size].code;
                 }
                 s = p;
@@ -91,7 +75,9 @@ public:
         }
     }
 
-	~hfTree() { delete[] elem; }
+    ~hfTree() {
+        delete[] elem;
+    }
 };
 
 

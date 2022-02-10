@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-12-20 11:12:12
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-09-13 13:47:34
+* @Last Modified time: 2021-10-01 14:27:03
 */
 
 // Dijkstra algorithm
@@ -32,7 +32,7 @@ struct edge {
 vector<edge> e[maxn];
 int dis[maxn];
 bool bellmanford(int n, int s) {
-    memset(dis, 63, sizeof(dis));
+    memset(dis, 0x3f, sizeof(dis));
     dis[s] = 0;
     bool flag;
     for (int i = 1; i <= n; i++) {

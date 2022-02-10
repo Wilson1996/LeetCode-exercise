@@ -2,12 +2,13 @@
 * @Author: wilson_t
 * @Date:   2021-08-09 21:47:10
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-08-10 00:06:20
+* @Last Modified time: 2021-09-01 12:16:43
 */
 #include <bits/stdc++.h>
 using namespace std;
 
 // 区间修改+区间查询
+// (i+1)*Ai - sum{1<=k<=i}(k * d[k])
 const int maxn = 1000005;
 long long c_a[maxn], c_b[maxn];
 int n, q;
