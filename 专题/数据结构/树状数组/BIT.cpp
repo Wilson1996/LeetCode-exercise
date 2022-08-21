@@ -2,10 +2,37 @@
 * @Author: wilson_t
 * @Date:   2021-08-09 16:32:45
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-08-09 20:35:55
+* @Last Modified time: 2022-04-28 22:01:35
 */
 #include <bits/stdc++.h>
 using namespace std;
+
+class Bit {
+    vector<int> cv;
+    int cn;
+public:
+    Bit(int size) : cn(size), cv(size+1, 0) {}
+
+    int lowbit(int x){
+        return x & (-x);
+    }
+
+    void update(int i, int x){
+        while(i <= cn){
+            cv[i] += x;
+            i += lowbit(i);
+        }
+    }
+
+    int query(int i){
+        int sum = 0;
+        while(i > 0){
+            sum += cv[i];
+            i -= lowbit(i); 
+        }
+        return sum;
+    }
+};
 
 // 单点修改+区间查询
 const int maxn = 1000005;

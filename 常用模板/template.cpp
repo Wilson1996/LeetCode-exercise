@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2021-08-09 13:43:44
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2021-09-06 15:05:47
+* @Last Modified time: 2022-05-21 11:12:00
 */
 // #include <bits/stdc++.h>
 #include <iostream>
@@ -56,6 +56,8 @@ const int d4y[] = {0, 1, 0, -1};
 const int d8x[] = {1, 0, -1, 0, 1, 1, -1, -1};
 const int d8y[] = {0, 1, 0, -1, 1, -1, 1, -1};
 mt19937_64 rng((unsigned int) chrono::steady_clock::now().time_since_epoch().count());
+// mt19937 gen{random_device{}()};
+// uniform_int_distribution<int> dis(0, n - 1);
 
 struct Edge {
     int from, to;

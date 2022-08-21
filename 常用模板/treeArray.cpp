@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-08-11 21:23:25
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-11-28 13:35:49
+* @Last Modified time: 2022-04-28 22:18:57
 */
 /*
 * 树状数组
@@ -66,24 +66,76 @@ class Bit {
     vector<int> cv;
     int cn;
 public:
-    Bit(int size) : cn(size), cv(size+1, 0) {}
+    Bit(int size) : cn(size), cv(size + 1, 0) {}
 
-    int lowbit(int x){
+    int lowbit(int x) {
         return x & (-x);
     }
 
-    void update(int i, int x){
-        while(i <= cn){
+    void update(int i, int x) {
+        while(i <= cn) {
             cv[i] += x;
             i += lowbit(i);
         }
     }
 
-    int query(int i){
+    int query(int i) {
         int sum = 0;
-        while(i > 0){
+        while(i > 0) {
             sum += cv[i];
-            i -= lowbit(i); 
+            i -= lowbit(i);
+        }
+        return sum;
+    }
+};
+
+// 带离散化的树状数组
+class BIT {
+    vector<int> cv;
+    unordered_map<int, int> rank;
+    int cn;
+public:
+    BIT() {}
+    void init(vector<int>& nums) {
+        rank.clear();
+        set<int> nums(nums.begin(), nums.end());
+        int cnt = 1;
+        for(int x : st) {
+            rank[x] = cnt++;
+        }
+        cn = cnt + 1;
+        cv.resize(cn + 1, 0);
+    }
+    int lowbit(int x) {
+        return x & (-x);
+    }
+
+    void update(int num, int x) {
+        int i = rank[num];
+        while(i <= cn) {
+            cv[i] += x;
+            i += lowbit(i);
+        }
+    }
+
+    // 包括num
+    int query(int num) {
+        int sum = 0;
+        int i = rank[num];
+        while(i > 0) {
+            sum += cv[i];
+            i -= lowbit(i);
+        }
+        return sum;
+    }
+
+    // 不包括num
+    int query_none(int num) {
+        int sum = 0;
+        int i = rank[num] - 1;
+        while(i > 0) {
+            sum += cv[i];
+            i -= lowbit(i);
         }
         return sum;
     }

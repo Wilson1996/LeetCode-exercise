@@ -2,7 +2,7 @@
 * @Author: wilson_t
 * @Date:   2020-08-28 22:20:43
 * @Last Modified by:   wilson_t
-* @Last Modified time: 2020-08-31 11:09:29
+* @Last Modified time: 2022-06-08 09:12:52
 */
 
 #include <bits/stdc++.h>
@@ -132,7 +132,7 @@ public:
         arr[k] = val;
     }
 
-    int query(int l, int r) {	// []
+    int query(int l, int r) {   // []
         return _query(1, 0, n - 1, l, r);
     }
 };
@@ -192,8 +192,8 @@ public:
     }
 };
 
-int main(int argc, char* argv[]) {	
-    vector<long long> v = {3,4,2,1,7,8,6,5,9,10};
+int main(int argc, char* argv[]) {
+    vector<long long> v = {3, 4, 2, 1, 7, 8, 6, 5, 9, 10};
     TW::ST<long long, Max<long long>>* st = new TW::ST<long long, Max<long long>>(v);
     // ST st(v);
     cout << st->query(0, 9) << endl;
@@ -204,3 +204,35 @@ int main(int argc, char* argv[]) {
     delete st;
     return 0;
 }
+
+
+// 动态线段树
+// https://leetcode.cn/problems/my-calendar-iii/solution/wo-de-ri-cheng-an-pai-biao-iii-by-leetco-9rif/
+class MyCalendarThree {
+public:
+    unordered_map<int, pair<int, int>> tree;
+
+    MyCalendarThree() {
+
+    }
+
+    void update(int start, int end, int l, int r, int idx) {
+        if (r < start || end < l) {
+            return;
+        }
+        if (start <= l && r <= end) {
+            tree[idx].first++;
+            tree[idx].second++;
+        } else {
+            int mid = (l + r) >> 1;
+            update(start, end, l, mid, 2 * idx);
+            update(start, end, mid + 1, r, 2 * idx + 1);
+            tree[idx].first = tree[idx].second + max(tree[2 * idx].first, tree[2 * idx + 1].first);
+        }
+    }
+
+    int book(int start, int end) {
+        update(start, end - 1, 0, 1e9, 1);
+        return tree[1].first;
+    }
+};
