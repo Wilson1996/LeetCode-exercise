@@ -26,3 +26,9 @@ struct INIT {
 
 //C(n, k) % mod = (ll)fac[n] * facInv[k] % mod * facInv[n-k] % mod;
 //费马小定理： a/b (=) a*x(mod M) ==> x=b^(M-2) (M为质数时)
+
+// 快速计算单一的组合数 C(n, k) % MOD
+long long comb(int n, int k) {
+    if (k > n) return 0;
+    return fac[n] * facInv[k] % mod * facInv[n-k] % mod;
+}
